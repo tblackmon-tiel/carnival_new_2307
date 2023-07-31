@@ -9,6 +9,8 @@ RSpec.describe Ride do
     @visitor1 = Visitor.new('Bruce', 54, '$10')
     @visitor2 = Visitor.new('Tucker', 36, '$5')
     @visitor3 = Visitor.new('Penny', 64, '$15')
+    @visitor1.add_preference(:gentle)
+    @visitor2.add_preference(:gentle)
   end
 
   describe "#initialize" do
@@ -45,7 +47,12 @@ RSpec.describe Ride do
     end
 
     it "does not allow boarding if the user is not tall enough" do
+      @visitor3.add_preference(:thrilling)
 
+      @ride3.board_rider(@visitor1)
+      @ride3.board_rider(@visitor3)
+
+      expect(@ride3.rider_log).to eq({ @visitor3 => 1 })
     end
 
     it "updates the visitors spending money" do
