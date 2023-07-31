@@ -77,4 +77,51 @@ RSpec.describe Carnival do
       expect(@carnival1.total_revenue).to eq(15)
     end
   end
+
+  describe "#summary" do
+    xit "returns a summary hash of the carnival" do
+      2.times { @ride1.board_rider(@visitor1) }
+      @ride2.board_rider(@visitor1)
+      @ride3.board_rider(@visitor3)
+      @carnival1.add_ride(@ride1)
+      @carnival1.add_ride(@ride2)
+      @carnival1.add_ride(@ride3)
+
+      expect(@carnival1.summary).to eq(
+        {
+          visitor_count: 2,
+          revenue_earned: 9,
+          visitors: [
+            {
+              visitor: @visitor1,
+              favorite_ride: @ride1,
+              total_money_spent: 7
+            },
+            {
+              visitor: @visitor3,
+              favorite_ride: @ride3,
+              total_money_spent: 2
+            }
+          ],
+          rides: [
+            {
+              ride: @ride1,
+              riders: [@visitor1],
+              total_revenue: 2
+            },
+            {
+              ride: @ride2,
+              riders: [@visitor1],
+              total_revenue: 5
+            },
+            {
+              ride: @ride3,
+              riders: [@visitor3],
+              total_revenue: 2
+            }
+          ]
+        }
+      )
+    end
+  end
 end
