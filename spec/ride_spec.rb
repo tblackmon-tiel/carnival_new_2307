@@ -46,10 +46,20 @@ RSpec.describe Ride do
       expect(@ride1.rider_log).to eq({ @visitor1 => 2, @visitor2 => 1 })
     end
 
-    it "does not allow boarding if the user is not tall enough" do
+    it "does not allow boarding if the visitor doesn't prefer the excitement level" do
       @visitor3.add_preference(:thrilling)
 
       @ride3.board_rider(@visitor1)
+      @ride3.board_rider(@visitor3)
+
+      expect(@ride3.rider_log).to eq({ @visitor3 => 1 })
+    end
+
+    it "does not allow boarding if the visitor is not tall enough" do
+      @visitor2.add_preference(:thrilling)
+      @visitor3.add_preference(:thrilling)
+
+      @ride3.board_rider(@visitor2)
       @ride3.board_rider(@visitor3)
 
       expect(@ride3.rider_log).to eq({ @visitor3 => 1 })
