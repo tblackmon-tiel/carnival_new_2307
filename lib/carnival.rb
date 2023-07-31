@@ -1,5 +1,6 @@
 class Carnival
   attr_reader :duration, :rides
+  @@all_carnivals_rides = []
 
   def initialize(duration)
     @duration = duration
@@ -8,6 +9,7 @@ class Carnival
 
   def add_ride(ride)
     @rides << ride
+    @@all_carnivals_rides << ride
   end
 
   def most_popular_ride
@@ -68,5 +70,9 @@ class Carnival
     @rides.max do |ride1, ride2|
       ride1.rider_log[visitor] <=> ride2.rider_log[visitor]
     end
+  end
+
+  def self.total_revenues
+    @@all_carnivals_rides.sum { |ride| ride.total_revenue }
   end
 end

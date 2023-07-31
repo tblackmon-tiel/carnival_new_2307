@@ -192,4 +192,10 @@ RSpec.describe Carnival do
       expect(@carnival1.get_favorite_ride(rich_visitor)).to eq(@ride1)
     end
   end
+
+  describe "#self.total_revenues" do
+    it "returns the value of all carnivals revenues" do
+      expect(Carnival.total_revenues).to eq(72) # sum of all revenues through the test
+    end
+  end
 end
