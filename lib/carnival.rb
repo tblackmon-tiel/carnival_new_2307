@@ -28,10 +28,10 @@ class Carnival
 
   def summary
     {
-      # visitor_count: get_unique_visitors.length,
-      # revenue_earned: total_revenue,
-      # visitors: get_unique_visitors,
-      # rides: get_rides
+      visitor_count: get_unique_visitors.length,
+      revenue_earned: total_revenue,
+      visitors: get_unique_visitors,
+      rides: get_rides
     }
   end
 
@@ -53,11 +53,11 @@ class Carnival
     @rides.each do |ride|
       all_visitors << ride.rider_log.keys
     end
-    unique_visitors = all_visitors.flatten.unique
+    unique_visitors = all_visitors.flatten.uniq
     unique_visitors.each do |visitor|
       visitor_details << {
         visitor: visitor,
-        # favorite_ride: get_favorite_ride(visitor),
+        favorite_ride: get_favorite_ride(visitor),
         total_money_spent: visitor.total_money_spent
       }
     end

@@ -79,7 +79,7 @@ RSpec.describe Carnival do
   end
 
   describe "#summary" do
-    xit "returns a summary hash of the carnival" do
+    it "returns a summary hash of the carnival" do
       2.times { @ride1.board_rider(@visitor1) }
       @ride2.board_rider(@visitor1)
       @ride3.board_rider(@visitor3)
@@ -126,7 +126,7 @@ RSpec.describe Carnival do
   end
 
   describe "#get_unique_visitors" do
-    xit "returns an array of unique visitors" do
+    it "returns an array of unique visitors" do
       2.times { @ride1.board_rider(@visitor1) }
       @ride2.board_rider(@visitor1)
       @ride3.board_rider(@visitor3)
