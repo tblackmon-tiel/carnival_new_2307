@@ -56,4 +56,14 @@ RSpec.describe Visitor do
       expect(visitor1.spending_money).to eq(8)
     end
   end
+
+  describe "#total_money_spent" do
+    it "tracks how much money the visitor has spent" do
+      visitor1 = Visitor.new('Bruce', 54, '$10')
+
+      visitor1.pay(2)
+
+      expect(visitor1.total_money_spent).to eq(2)
+    end
+  end
 end
