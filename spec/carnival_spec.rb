@@ -139,7 +139,7 @@ RSpec.describe Carnival do
   end
 
   describe "#get_rides" do
-    xit "returns an array of rides with unique data" do
+    it "returns an array of rides with unique data" do
       2.times { @ride1.board_rider(@visitor1) }
       @ride2.board_rider(@visitor1)
       @ride3.board_rider(@visitor3)

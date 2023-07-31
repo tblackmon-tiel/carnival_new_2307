@@ -34,4 +34,16 @@ class Carnival
       # rides: get_rides
     }
   end
+
+  def get_rides
+    rides_array = []
+    @rides.each do |ride|
+      rides_array << {
+        ride: ride,
+        riders: ride.rider_log.keys,
+        total_revenue: ride.total_revenue
+      }
+    end
+    rides_array
+  end
 end
