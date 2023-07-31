@@ -134,7 +134,18 @@ RSpec.describe Carnival do
       @carnival1.add_ride(@ride2)
       @carnival1.add_ride(@ride3)
 
-      expect(@carnival1.get_unique_visitors).to eq([@visitor1, @visitor3])
+      expect(@carnival1.get_unique_visitors).to eq([
+        {
+          visitor: @visitor1,
+          favorite_ride: @ride1,
+          total_money_spent: 7
+        },
+        {
+          visitor: @visitor3,
+          favorite_ride: @ride3,
+          total_money_spent: 2
+        }
+      ])
     end
   end
 
@@ -164,6 +175,21 @@ RSpec.describe Carnival do
           total_revenue: 2
         }
       ])
+    end
+  end
+
+  describe "#get_favorite_ride" do
+    it "returns a visitors most ridden ride" do
+      rich_visitor = Visitor.new("Richy", 64, "$100")
+      rich_visitor.add_preference(:gentle)
+      rich_visitor.add_preference(:thrilling)
+      2.times { @ride1.board_rider(rich_visitor) }
+      @ride2.board_rider(rich_visitor)
+      @carnival1.add_ride(@ride1)
+      @carnival1.add_ride(@ride2)
+      @carnival1.add_ride(@ride3)
+
+      expect(@carnival1.get_favorite_ride(rich_visitor)).to eq(@ride1)
     end
   end
 end
