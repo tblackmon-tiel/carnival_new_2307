@@ -24,4 +24,13 @@ RSpec.describe Ride do
       expect(ride1.total_revenue).to eq(0)
     end
   end
+
+  describe "#rider_log" do
+    it "returns a hash of visitor objects and how many times they have ridden" do
+      ride1 = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
+
+      expect(ride1.rider_log).to be_empty
+      expect(ride1.rider_log).to be_a Hash
+    end
+  end
 end
