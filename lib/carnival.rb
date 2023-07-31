@@ -21,4 +21,8 @@ class Carnival
       ride1.total_revenue <=> ride2.total_revenue
     end
   end
+
+  def total_revenue
+    @rides.sum { |ride| ride.total_revenue }
+  end
 end
