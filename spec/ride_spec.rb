@@ -93,4 +93,14 @@ RSpec.describe Ride do
     end
   end
 
+  describe "#times_ridden?" do
+    it "returns the number of times the ride has been ridden" do
+      @ride1.board_rider(@visitor1)
+      @ride1.board_rider(@visitor1)
+      @ride1.board_rider(@visitor2)
+
+      expect(@ride1.times_ridden?).to eq(3)
+    end
+  end
+
 end
