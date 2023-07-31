@@ -124,4 +124,46 @@ RSpec.describe Carnival do
       )
     end
   end
+
+  describe "#get_unique_visitors" do
+    xit "returns an array of unique visitors" do
+      2.times { @ride1.board_rider(@visitor1) }
+      @ride2.board_rider(@visitor1)
+      @ride3.board_rider(@visitor3)
+      @carnival1.add_ride(@ride1)
+      @carnival1.add_ride(@ride2)
+      @carnival1.add_ride(@ride3)
+
+      expect(@carnival1.get_unique_visitors).to eq([@visitor1, @visitor3])
+    end
+  end
+
+  describe "#get_rides" do
+    xit "returns an array of rides with unique data" do
+      2.times { @ride1.board_rider(@visitor1) }
+      @ride2.board_rider(@visitor1)
+      @ride3.board_rider(@visitor3)
+      @carnival1.add_ride(@ride1)
+      @carnival1.add_ride(@ride2)
+      @carnival1.add_ride(@ride3)
+
+      expect(@carnival1.get_rides).to eq([
+        {
+          ride: @ride1,
+          riders: [@visitor1],
+          total_revenue: 2
+        },
+        {
+          ride: @ride2,
+          riders: [@visitor1],
+          total_revenue: 5
+        },
+        {
+          ride: @ride3,
+          riders: [@visitor3],
+          total_revenue: 2
+        }
+      ])
+    end
+  end
 end

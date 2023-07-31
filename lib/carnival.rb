@@ -28,7 +28,7 @@ class Carnival
 
   def summary
     {
-      visitor_count: get_visitor_count,
+      # visitor_count: get_unique_visitors.length,
       # revenue_earned: total_revenue,
       # visitors: get_unique_visitors,
       # rides: get_rides
