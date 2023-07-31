@@ -65,6 +65,16 @@ RSpec.describe Ride do
       expect(@ride3.rider_log).to eq({ @visitor3 => 1 })
     end
 
+    it "does not allow boarding if the visitor does not have enough money" do
+      @ride2.board_rider(@visitor2)
+
+      expect(@visitor2.spending_money).to eq(0)
+      @ride2.board_rider(@visitor2)
+
+      expect(@ride2.rider_log).to eq({ @visitor2 => 1 })
+      expect(@ride2.total_revenue).to eq(5)
+    end
+
     it "updates the visitors spending money" do
       @ride1.board_rider(@visitor1)
       @ride1.board_rider(@visitor2)
