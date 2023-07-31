@@ -8,8 +8,8 @@ class Carnival
   end
 
   def add_ride(ride)
-    @rides << ride
     @@all_carnivals_rides << ride
+    @rides << ride
   end
 
   def most_popular_ride
@@ -38,32 +38,26 @@ class Carnival
   end
 
   def get_rides
-    rides_array = []
-    @rides.each do |ride|
-      rides_array << {
+    @rides.map do |ride|
+      {
         ride: ride,
         riders: ride.rider_log.keys,
         total_revenue: ride.total_revenue
       }
     end
-    rides_array
   end
 
   def get_unique_visitors
-    visitor_details = []
-    all_visitors = []
-    @rides.each do |ride|
-      all_visitors << ride.rider_log.keys
-    end
-    unique_visitors = all_visitors.flatten.uniq
-    unique_visitors.each do |visitor|
-      visitor_details << {
+    unique_visitors = @rides.map do |ride|
+      ride.rider_log.keys
+    end.flatten.uniq
+    unique_visitors.map do |visitor|
+      {
         visitor: visitor,
         favorite_ride: get_favorite_ride(visitor),
         total_money_spent: visitor.total_money_spent
       }
     end
-    visitor_details
   end
 
   def get_favorite_ride(visitor)
